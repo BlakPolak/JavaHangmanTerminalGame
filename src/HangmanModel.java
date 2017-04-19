@@ -21,6 +21,9 @@ public class HangmanModel {
 //        }
 //
     }
+    public static void letterOrWord(){
+
+    }
 
     public static void main(String[] args){
         String ANSI_RED = "\u001B[31m";
@@ -39,7 +42,8 @@ public class HangmanModel {
 
 
         capital = FileSupport.getCapital();
+
         System.out.println(capital);
-        guess(capital, life);
+        letterOrWord();
     }
 }

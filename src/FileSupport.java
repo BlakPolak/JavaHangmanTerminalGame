@@ -27,4 +27,3 @@ class FileSupport {
     return capital;
   }
 }
-

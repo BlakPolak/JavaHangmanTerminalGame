@@ -1,4 +1,5 @@
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -16,9 +17,11 @@ class FileSupport {
     try {
       Random random = new Random();
       String content = new String(Files.readAllBytes(Paths.get("javahangmangame-bexpe/europecapitals.txt")));
-      List<String> capitals = Arrays.asList(content.split("\\s+"));
+      List<String> capitals = new ArrayList<String>(Arrays.asList(content.split("\\s+")));
       int index = random.nextInt(capitals.size());
-      capital = capitals.get(index).toLowerCase();
+      capital = capitals.get(index).toUpperCase();
+      capitals.remove(index);
+
     } catch(IOException ioe) {
       System.out.println("Error reading file");
       ioe.printStackTrace();

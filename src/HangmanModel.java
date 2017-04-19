@@ -2,7 +2,24 @@ import java.util.List;
 public class HangmanModel {
 
     public static void guess(String word, Integer life){
+        String s1 = word;
+        String sinput = HangmanView.takeInput();
+        String s2 = public String toUpperCase(sinput)
         HangmanView.print("Enter a word:");
+        HangmanController.getInput();
+        try {
+            System.out.println(tab[index]);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Niepoprawny parametr, rozmiar tablicy to: "+tab.length);
+        }
+
+
+        if (s1.equals(s2)) {
+            System.out.println("Great answer ");
+        } else {
+            System.out.println("Try again");
+        }
+
     }
 
     public static void main(String[] args){

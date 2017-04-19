@@ -1,10 +1,10 @@
-/**
- * Created by ppolak on 19.04.17.
- */
+import java.util.Scanner;
+
 public class HangmanController {
     
-    public static Char getInput(){
-        Char letter = reading.nextChar();
+    public static Character getInput(){
+        Scanner reader = new Scanner(System.in);
+        Character letter = reader.next().charAt(0);
         return letter;
     }
 }

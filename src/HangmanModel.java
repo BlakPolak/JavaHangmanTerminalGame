@@ -15,7 +15,7 @@ public class HangmanModel {
 //
 //        list.remove(list.size()-1);
 //        Integer randomEuropeNumer = Math.random() * europe.length();
-//        String word = (String) list.get(list.size()-1);
+//        String word = (String) europe.get(randomEuropeNumer);
 //        guess(word, life);
     }
 }

@@ -1,16 +1,18 @@
 import java.util.InputMismatchException;
+import java.util.ArrayList;
 import java.util.List;
-import java.lang.Exception;
 
 public class HangmanModel {
     Integer life;
     String capital;
+    List guessedletters;
 
     public HangmanModel(){
         this.capital = FileSupport.getCapital();
         this.life = 5;
+        this.guessedletters = new ArrayList();
     }
-    public void wordToGuess(){
+    public char[] wordToGuess(){
         Integer i = 0;
         char[] charToGuess = new char[this.capital.length()];
         while (i < this.capital.length()){
@@ -22,9 +24,21 @@ public class HangmanModel {
         }
         String wordToGuess = new String(charToGuess);
         HangmanView.print(wordToGuess);
+        return charToGuess;
     }
-    public static void guessByLettter(String capital, Integer life){
+    public  void guessByLettter(){
         HangmanView.print("Guess by letter:");
+        char[] dashedWord= wordToGuess();
+        Character letterUppercase = HangmanController.getChar();
+        if (this.capital.contains(letterUppercase+"")){
+            for(int j=0; j<this.capital.length(); j++){
+                if(this.capital.charAt(j) == letterUppercase)
+                    dashedWord[j] = letterUppercase;
+            }
+            System.out.println(dashedWord);
+        }else{
+            this.life--;
+        }
 //        String s1 = capital;
 //        String sinput = HangmanView.takeInput();
 //        String s2 = public String toUpperCase(sinput)
@@ -45,7 +59,7 @@ public class HangmanModel {
 //
 
     }
-    public static void guessByWord(String capital, Integer life){
+    public void guessByWord(){
 //        String s1 = capital;
 //        String sinput = HangmanView.takeInput();
 //        String s2 = public String toUpperCase(sinput)
@@ -81,11 +95,13 @@ public class HangmanModel {
                     case 1:
                         System.out.println("in 1");
                         wordToGuess();
-                        guessByLettter(this.capital, this.life);
+                        guessByLettter();
+                        break;
                     case 2:
                         System.out.println("in 2");
                         wordToGuess();
-                        guessByWord(this.capital, this.life);
+                        guessByWord();
+                        break;
                     case 3:
                         System.out.println("quit");
                         break;

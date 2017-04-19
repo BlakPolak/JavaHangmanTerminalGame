@@ -5,7 +5,8 @@ public class HangmanController {
     public static Character getChar(){
         Scanner reader = new Scanner(System.in);
         Character letter = reader.next().charAt(0);
-        return letter;
+        Character letterUppercase = Character.toUpperCase(letter);
+        return letterUppercase;
     }
     public static Integer getInteger(){
         Scanner reader = new Scanner(System.in);

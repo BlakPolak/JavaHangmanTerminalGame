@@ -5,8 +5,6 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.Random;
 
-
-
 class FileSupport {
     public static void main(String[] args) {
         System.out.println(getCapital());
@@ -23,6 +21,7 @@ class FileSupport {
     } catch(IOException ioe) {
       System.out.println("Error reading file");
       ioe.printStackTrace();
+
     }
     return capital;
   }

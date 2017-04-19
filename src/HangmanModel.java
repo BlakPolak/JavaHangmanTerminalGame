@@ -28,8 +28,11 @@ public class HangmanModel {
         String europe;
 
 
-//        FileSupport. sciagam liste i
-        Integer randomEuropeNumer = Math.random() * europe.length();
-        guess(word, life);
+////        FileSupport. sciagam liste i
+//
+//        list.remove(list.size()-1);
+//        Integer randomEuropeNumer = Math.random() * europe.length();
+//        String word = (String) europe.get(randomEuropeNumer);
+//        guess(word, life);
     }
 }

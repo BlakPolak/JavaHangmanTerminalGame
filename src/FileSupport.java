@@ -1,3 +1,4 @@
+
 import java.util.Arrays;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -14,7 +15,7 @@ class FileSupport {
     String capital = "";
     try {
       Random random = new Random();
-      String content = new String(Files.readAllBytes(Paths.get("europecapitals.txt")));
+      String content = new String(Files.readAllBytes(Paths.get("javahangmangame-bexpe/europecapitals.txt")));
       List<String> capitals = Arrays.asList(content.split("\\s+"));
       int index = random.nextInt(capitals.size());
       capital = capitals.get(index).toLowerCase();
@@ -26,3 +27,4 @@ class FileSupport {
     return capital;
   }
 }
+

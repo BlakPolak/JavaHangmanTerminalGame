@@ -14,7 +14,6 @@ public class FileSupport {
 
         // create Scanner inFile1
         Scanner inFile1 = new Scanner(new File("europecapitals.txt")).useDelimiter(",\\s*");
-
         // Original answer used LinkedList, but probably preferable to use ArrayList in most cases
         // List<String> temps = new LinkedList<String>();
         List<String> temps = new ArrayList<String>();
@@ -28,9 +27,10 @@ public class FileSupport {
         inFile1.close();
         String[] tempsArray = temps.toArray(new String[0]);
 
-        // for (String s : tempsArray) {
-        //     System.out.println(s);
-        return tempsArray;
+        for (String s : tempsArray) {
+            System.out.println(s);
+        }
+
+
     }
-  }
 }

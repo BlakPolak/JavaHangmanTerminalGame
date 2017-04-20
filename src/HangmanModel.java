@@ -6,15 +6,21 @@ public class HangmanModel {
     Integer life;
     String capital;
     static List<String> guessedletters; // wszystkie ktore zgadywal nawet niepoprawne, printowanie na ekranie
+    char[] guessedWord;
+    char[] charToGuess;
+    String wordToGuess;
 
     public HangmanModel(){
         this.capital = FileSupport.getCapital();
         this.life = 5;
-        this.guessedletters = new ArrayList();  // zaimplementuj!
+        this.guessedletters = new ArrayList();
+        this.guessedWord= wordToGuess();
+        this.wordToGuess = new String(guessedWord);
     }
+
     public char[] wordToGuess(){
         Integer i = 0;
-        char[] charToGuess = new char[this.capital.length()];  // co tu sie dzieje?
+        char[] charToGuess = new char[this.capital.length()];
         while (i < this.capital.length()){
             charToGuess[i] = '-';  // changing characters to '-'
             if (this.capital.charAt(i) == ' '){  // if there is a capital with ' ' its not chanaging to '-' but to ' '
@@ -22,24 +28,21 @@ public class HangmanModel {
             }
             i++; // going to next char
         }
-        String wordToGuess = new String(charToGuess);
-        HangmanView.print(wordToGuess);
         return charToGuess;
     }
     public  void guessByLettter(){
-        HangmanView.print("Guess by letter: ");
-        char[] dashedWord= wordToGuess();
-        Character letterUppercase = HangmanController.getChar(); // zrob while z rozpoznawaniem czy ta litera juz jest w liscie odgadnietych
+        HangmanView.print(this.guessedWord toString());
+        HangmanView.print("Guess by letter:");
+        Character letterUppercase = HangmanController.getChar();
         if (this.capital.contains(letterUppercase+"")){
             for(int j=0; j<this.capital.length(); j++){
                 if(this.capital.charAt(j) == letterUppercase)
-                    dashedWord[j] = letterUppercase;  // dodawanie do listy z wybranymi literami
+                    this.guessedWord[j] = letterUppercase;
             }
-            System.out.println(dashedWord);
+            HangmanView.print(this.guessedWord toString());
         }else{
             this.life--;
         }
-
     }
     public void guessByWord(){
 
@@ -47,37 +50,48 @@ public class HangmanModel {
     }
 
     public void playGame(){
-        HangmanView.print("1 => guess by letter");
-        HangmanView.print("2 => guess by word");
-        HangmanView.print("3 => quit");
-        boolean noInput = true;
-        while (noInput) {
-            try {
-                Integer option = HangmanController.getInteger();
-                noInput = false;
-                System.out.println(option);
-                switch (option) {
-                    case 1:
-                        System.out.println("in 1");
-                        wordToGuess();
-                        guessByLettter();
-                        break;
-                    case 2:
-                        HangmanView.print("Guess by word: ");
-                        wordToGuess();
-                        guessByWord();
-                        break;
-                    case 3:
-                        System.out.println("quit");
-                        break;
-                    default:
-                        HangmanView.print("Wrong input");
-                }
-            } catch (InputMismatchException e) {
-                HangmanView.print("Type only one number!");
+        wordToGuess();
+        while (life>0){
+            HangmanView.print("1 => guess by letter");
+            HangmanView.print("2 => guess by word");
+            HangmanView.print("3 => quit");
+            boolean noInput = true;
+            while (noInput) {
+                try {
+                    Integer option = HangmanController.getInteger();
+                    noInput = false;
+                    System.out.println(option);
+                    switch (option) {
+                        case 1:
+                            System.out.println("in 1");
+                            guessByLettter();
+                            break;
+                        case 2:
+                            System.out.println("in 2");
+                            guessByWord();
+                            break;
+                        case 3:
+                            System.out.println("quit");
+                            break;
+                        default:
+                            HangmanView.print("Wrong input");
+                    }
+                } catch (InputMismatchException e) {
+                    HangmanView.print("Type only one number!");
 
+                }
             }
+            if (this.capital.equals(String.valueOf(this.guessedWord))){
+                HangmanView.print(new String (this.guessedWord));
+                HangmanView.print("You win!");
+                break;
+            }
+            HangmanView.print("   Life remaining=" + this.life);
         }
+        if (life<=0){
+            HangmanView.print("You lost!");
+        }
+
     }
 
 
@@ -96,6 +110,7 @@ public class HangmanModel {
         HangmanView.print(ANSI_GREEN  + "        Lifes: "  + hangman.life + ANSI_RESET );
 
         HangmanView.print(hangman.capital);
+        HangmanView.print(hangman.wordToGuess);
         hangman.playGame();
 
     }

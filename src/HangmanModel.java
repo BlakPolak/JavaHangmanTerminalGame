@@ -1,12 +1,12 @@
-import java.util.InputMismatchException;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.lang.Runtime;
 
 public class HangmanModel {
     Integer life;
     String capital;
-    List guessedletters;
+    static List<String> guessedletters; // wszystkie ktore zgadywal nawet niepoprawne, printowanie na ekranie
     char[] guessedWord;
     char[] charToGuess;
     String wordToGuess;
@@ -19,16 +19,17 @@ public class HangmanModel {
         this.guessedWord= wordToGuess();
         this.wordToGuess = new String(guessedWord);
     }
+
     public char[] wordToGuess(){
 
         Integer i = 0;
-        charToGuess = new char[this.capital.length()];
+        char[] charToGuess = new char[this.capital.length()];
         while (i < this.capital.length()){
-            charToGuess[i] = '-';
-            if (this.capital.charAt(i) == ' '){
+            charToGuess[i] = '-';  // changing characters to '-'
+            if (this.capital.charAt(i) == ' '){  // if there is a capital with ' ' its not chanaging to '-' but to ' '
                 charToGuess[i]= ' ';
             }
-            i++;
+            i++; // going to next char
         }
         return charToGuess;
     }
@@ -45,7 +46,6 @@ public class HangmanModel {
         }else{
             this.life--;
         }
-
     }
 
     public void guessByWord(){
@@ -115,7 +115,6 @@ public class HangmanModel {
 
         HangmanView.print(hangman.capital);
         HangmanView.print(hangman.wordToGuess);
-
         hangman.playGame();
 
     }

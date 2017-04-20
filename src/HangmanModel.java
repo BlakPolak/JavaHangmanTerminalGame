@@ -81,7 +81,8 @@ public class HangmanModel {
                             break;
                         case 3:
                             HangmanView.print("See you next time!");
-                            break;
+                            noInput = false;
+                            System.exit(0);
                         default:
                             HangmanView.print("Wrong input");
 

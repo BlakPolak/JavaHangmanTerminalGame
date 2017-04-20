@@ -17,7 +17,7 @@ public class HangmanController {
 
     public static String getWord(){
         Scanner reader = new Scanner(System.in);
-        String word = reader.nextLine().toUpperCase();
+        String word = reader.nextLine().toUpperCase().trim();
         return word;
     }
 

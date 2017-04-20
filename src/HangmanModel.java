@@ -1,6 +1,7 @@
 import java.util.InputMismatchException;
 import java.util.ArrayList;
 import java.util.List;
+import java.lang.Runtime;
 
 public class HangmanModel {
     Integer life;
@@ -10,6 +11,7 @@ public class HangmanModel {
     char[] charToGuess;
     String wordToGuess;
 
+
     public HangmanModel(){
         this.capital = FileSupport.getCapital();
         this.life = 5;
@@ -18,6 +20,7 @@ public class HangmanModel {
         this.wordToGuess = new String(guessedWord);
     }
     public char[] wordToGuess(){
+
         Integer i = 0;
         charToGuess = new char[this.capital.length()];
         while (i < this.capital.length()){
@@ -30,7 +33,7 @@ public class HangmanModel {
         return charToGuess;
     }
     public  void guessByLettter(){
-        System.out.println(this.guessedWord);
+        HangmanView.print(new String(this.guessedWord));
         HangmanView.print("Guess by letter:");
         Character letterUppercase = HangmanController.getChar();
         if (this.capital.contains(letterUppercase+"")){
@@ -38,50 +41,15 @@ public class HangmanModel {
                 if(this.capital.charAt(j) == letterUppercase)
                     this.guessedWord[j] = letterUppercase;
             }
-            System.out.println(this.guessedWord);
+            HangmanView.print(new String(this.guessedWord));
         }else{
             this.life--;
         }
 
-//        String s1 = capital;
-//        String sinput = HangmanView.takeInput();
-//        String s2 = public String toUpperCase(sinput)
-//        HangmanView.print("Enter a word:");
-//        HangmanController.getInput();
-//        try {
-//            System.out.println(tab[index]);
-//        } catch (ArrayIndexOutOfBoundsException e) {
-//            System.out.println("Niepoprawny parametr, rozmiar tablicy to: "+tab.length);
-//        }
-//
-//
-//        if (s1.equals(s2)) {
-//            System.out.println("Great answer ");
-//        } else {
-//            System.out.println("Try again");
-//        }
-//
-
     }
+
     public void guessByWord(){
-//        String s1 = capital;
-//        String sinput = HangmanView.takeInput();
-//        String s2 = public String toUpperCase(sinput)
-//        HangmanView.print("Enter a word:");
-//        HangmanController.getInput();
-//        try {
-//            System.out.println(tab[index]);
-//        } catch (ArrayIndexOutOfBoundsException e) {
-//            System.out.println("Niepoprawny parametr, rozmiar tablicy to: "+tab.length);
-//        }
-//
-//
-//        if (s1.equals(s2)) {
-//            System.out.println("Great answer ");
-//        } else {
-//            System.out.println("Try again");
-//        }
-//
+
 
     }
 
@@ -93,13 +61,12 @@ public class HangmanModel {
             HangmanView.print("3 => quit");
             boolean noInput = true;
             while (noInput) {
+
                 try {
                     Integer option = HangmanController.getInteger();
                     noInput = false;
-                    System.out.println(option);
                     switch (option) {
                         case 1:
-                            System.out.println("in 1");
                             guessByLettter();
                             break;
                         case 2:
@@ -107,10 +74,11 @@ public class HangmanModel {
                             guessByWord();
                             break;
                         case 3:
-                            System.out.println("quit");
+                            HangmanView.print("See you next time!");
                             break;
                         default:
                             HangmanView.print("Wrong input");
+
                     }
                 } catch (InputMismatchException e) {
                     HangmanView.print("Type only one number!");

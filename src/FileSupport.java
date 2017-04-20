@@ -16,7 +16,7 @@ class FileSupport {
     String capital = "";
     try {
         Random random = new Random();
-        String content = new String(Files.readAllBytes(Paths.get("/home/beata/dev/java/javahangmangame-bexpe/europecapitals.txt")));
+        String content = new String(Files.readAllBytes(Paths.get("javahangmangame-bexpe/europecapitals.txt")));
         // List<String> capitals = Arrays.asList(content.split("\\s+"));  // asList doesnt support removal
         List<String> capitals = new ArrayList<String>(Arrays.asList(content.split("\\n")));
 

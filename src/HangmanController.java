@@ -7,11 +7,28 @@ public class HangmanController {
         Scanner reader = new Scanner(System.in);
         Character letter = reader.next().charAt(0);
         Character letterUppercase = Character.toUpperCase(letter);
-        String letterUppercaseStr = Character.toString(letterUppercase);
-        HangmanModel.guessedletters.add(letterUppercaseStr);
-        String joined = String.join(",", HangmanModel.guessedletters);
-        HangmanView.print("Used characters: ");
-        HangmanView.print(joined); // printowanie tej listy
+        boolean checkIfNotUsed = true;
+        String guessedLettersStr ="";
+        while (checkIfNotUsed) {
+            if( !HangmanModel.guessedletters.toString().contains(String.valueOf(letterUppercase))){
+                String letterUppercaseStr = Character.toString(letterUppercase);
+                HangmanModel.guessedletters.add(letterUppercaseStr);
+                guessedLettersStr = String.join(",", HangmanModel.guessedletters);
+                HangmanView.print("Used characters: ");
+                HangmanView.print(guessedLettersStr);
+                checkIfNotUsed = false;
+                return letterUppercase;
+            }else{
+                HangmanView.print("You have already used this letter! ");
+                if (guessedLettersStr.equals("")){
+                    HangmanView.print(guessedLettersStr);
+                }else{
+                    HangmanView.print("You have not used letters");
+                }
+                break;
+            }
+
+        }
         return letterUppercase;
     }
 

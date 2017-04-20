@@ -25,6 +25,7 @@ class FileSupport {
 
         int index = random.nextInt(capitals.size());
         capital = capitals.get(index).toUpperCase();
+//        System.out.println(capital);
         capitals.remove(index);
 
     } catch(IOException ioe) {

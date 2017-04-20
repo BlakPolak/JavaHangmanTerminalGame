@@ -14,6 +14,13 @@ public class HangmanController {
         HangmanView.print(joined); // printowanie tej listy
         return letterUppercase;
     }
+
+    public static String getWord(){
+        Scanner reader = new Scanner(System.in);
+        String word = reader.nextLine().toUpperCase();
+        return word;
+    }
+
     public static Integer getInteger(){
         Scanner reader = new Scanner(System.in);
         Integer number = reader.nextInt();

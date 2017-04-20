@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
-import java.lang.Runtime;
 
 public class HangmanModel {
     Integer life;
@@ -49,6 +48,14 @@ public class HangmanModel {
     }
 
     public void guessByWord(){
+        HangmanView.print("Guess by word:");
+        String wordUppercase = HangmanController.getWord();
+        if (this.capital.equals(wordUppercase)){
+            this.guessedWord = wordUppercase.toCharArray();
+//            HangmanView.print("This is it! You win! " + wordUppercase + "is correct capital.");
+        }else{
+            this.life--;
+        }
 
 
     }
@@ -70,7 +77,6 @@ public class HangmanModel {
                             guessByLettter();
                             break;
                         case 2:
-                            System.out.println("in 2");
                             guessByWord();
                             break;
                         case 3:

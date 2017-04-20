@@ -9,7 +9,8 @@ public class HangmanController {
         Character letterUppercase = Character.toUpperCase(letter);
         String letterUppercaseStr = Character.toString(letterUppercase);
         HangmanModel.guessedletters.add(letterUppercaseStr);
-        String joined = String.join(" , ", HangmanModel.guessedletters);
+        String joined = String.join(",", HangmanModel.guessedletters);
+        HangmanView.print("Used characters: ");
         HangmanView.print(joined); // printowanie tej listy
         return letterUppercase;
     }

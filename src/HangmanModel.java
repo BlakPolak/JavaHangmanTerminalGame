@@ -31,7 +31,7 @@ public class HangmanModel {
         return charToGuess;
     }
     public  void guessByLettter(){
-        HangmanView.print(this.guessedWord toString());
+        HangmanView.print(new String (this.guessedWord));
         HangmanView.print("Guess by letter:");
         Character letterUppercase = HangmanController.getChar();
         if (this.capital.contains(letterUppercase+"")){
@@ -39,7 +39,7 @@ public class HangmanModel {
                 if(this.capital.charAt(j) == letterUppercase)
                     this.guessedWord[j] = letterUppercase;
             }
-            HangmanView.print(this.guessedWord toString());
+            HangmanView.print(new String (this.guessedWord));
         }else{
             this.life--;
         }

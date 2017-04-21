@@ -5,7 +5,7 @@ import java.util.List;
 public class HangmanModel extends HangmanView{
     Integer life;
     String capital;
-    static List<String> guessedletters; // wszystkie ktore zgadywal nawet niepoprawne, printowanie na ekranie
+    static List<String> guessedletters;
     char[] guessedWord;
     char[] charToGuess;
     String wordToGuess;
@@ -24,11 +24,11 @@ public class HangmanModel extends HangmanView{
         Integer i = 0;
         char[] charToGuess = new char[this.capital.length()];
         while (i < this.capital.length()){
-            charToGuess[i] = '-';  // changing characters to '-'
-            if (this.capital.charAt(i) == ' '){  // if there is a capital with ' ' its not chanaging to '-' but to ' '
+            charToGuess[i] = '-';
+            if (this.capital.charAt(i) == ' '){
                 charToGuess[i]= ' ';
             }
-            i++; // going to next char
+            i++;
         }
         return charToGuess;
     }
@@ -44,6 +44,7 @@ public class HangmanModel extends HangmanView{
             print(new String(this.guessedWord));
         }else{
             this.life--;
+            print("given character is wrong, try again ;) ");
         }
     }
 
@@ -52,12 +53,10 @@ public class HangmanModel extends HangmanView{
         String wordUppercase = HangmanController.getWord();
         if (this.capital.equals(wordUppercase)){
             this.guessedWord = wordUppercase.toCharArray();
-//            print("This is it! You win! " + wordUppercase + "is correct capital.");
         }else{
             this.life--;
+            print("given word is wrong, try again ;)");
         }
-
-
     }
 
     public void playGame(){
@@ -75,11 +74,9 @@ public class HangmanModel extends HangmanView{
                     switch (option) {
                         case 1:
                             guessByLettter();
-                            clearScreen();
                             break;
                         case 2:
                             guessByWord();
-                            clearScreen();
                             break;
                         case 3:
                             print("See you next time!");
@@ -100,7 +97,7 @@ public class HangmanModel extends HangmanView{
                 print("You win!");
                 break;
             }
-            print("   Life remaining=" + this.life);
+            print("   Life remaining=" + this.life + System.lineSeparator());
         }
         if (life<=0){
             print("You lost!");
@@ -117,7 +114,7 @@ public class HangmanModel extends HangmanView{
 //        String ANSI_YELLOW = "\u001B[33m";
 //        String ANSI_BLUE = "\u001B[34m";
 //        String ANSI_PURPLE = "\u001B[35m";
-//        String ANSI_CYAN = "\u001B[36m";
+        String ANSI_CYAN = "\u001B[36m";
 //        String ANSI_WHITE = "\u001B[37m";
         HangmanModel hangman = new HangmanModel();
         hangman.printWelcomeText(5);

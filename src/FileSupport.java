@@ -7,9 +7,6 @@ import java.util.List;
 import java.util.Random;
 
 class FileSupport {
-    public static void main(String[] args) { //for testing
-        System.out.println(getCapital());
-    }
 
   static String getCapital() {
     String capital = "";

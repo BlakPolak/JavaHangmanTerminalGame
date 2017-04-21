@@ -6,14 +6,14 @@ import java.util.List;
 public class HangmanModel extends HangmanView{
     Integer life;
     String capital;
-    static List<String> guessedletters;
+    static List<String> guessedLetter;
     char[] guessedWord;
     String wordToGuess;
 
     public HangmanModel(){
         this.capital = FileSupport.getCapital();
         this.life = 5;
-        this.guessedletters = new ArrayList();
+        this.guessedLetter = new ArrayList();
         this.guessedWord= wordToGuess();
         this.wordToGuess = new String(guessedWord);
     }
@@ -33,7 +33,7 @@ public class HangmanModel extends HangmanView{
 
     public  void guessByLettter(){
         clearScreen();
-        printList(this.guessedletters);
+        printList(this.guessedLetter);
         print(new String(this.guessedWord));
         print("Guess by letter:");
         Character letterUppercase = HangmanController.getChar();
@@ -51,7 +51,7 @@ public class HangmanModel extends HangmanView{
 
     public void guessByWord(){
         clearScreen();
-        printList(this.guessedletters);
+        printList(this.guessedLetter);
         print(new String(this.guessedWord));
         print("Guess by word:");
         String wordUppercase = HangmanController.getWord();

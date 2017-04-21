@@ -10,9 +10,9 @@ public class HangmanController {
         boolean checkIfNotUsed = true;
         String guessedLettersStr ="";
         while (checkIfNotUsed) {
-            if( !HangmanModel.guessedletters.toString().contains(String.valueOf(letterUppercase))){
+            if( !HangmanModel.guessedLetter.toString().contains(String.valueOf(letterUppercase))){
                 String letterUppercaseStr = Character.toString(letterUppercase);
-                HangmanModel.guessedletters.add(letterUppercaseStr);
+                HangmanModel.guessedLetter.add(letterUppercaseStr);
                 return letterUppercase;
             }else{
                 HangmanView.print("You have already used this letter! ");

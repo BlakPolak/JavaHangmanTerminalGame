@@ -26,7 +26,7 @@ public class HangmanModel extends HangmanView{
             if (this.capital.charAt(i) == ' '){  // if there is a capital with ' ' its not changing to '-' but to ' '
                 charToGuess[i]= ' ';
             }
-            i++; // going to next char
+            i++;
         }
         return charToGuess;
     }
@@ -45,6 +45,7 @@ public class HangmanModel extends HangmanView{
             print(new String(this.guessedWord));
         }else{
             this.life--;
+            print("Given character is wrong, try again ;) ");
         }
     }
 
@@ -58,6 +59,7 @@ public class HangmanModel extends HangmanView{
             this.guessedWord = wordUppercase.toCharArray();
         }else{
             this.life--;
+            print("Given word is wrong, try again ;)");
         }
     }
 
@@ -82,7 +84,7 @@ public class HangmanModel extends HangmanView{
                             noInput = false;
                             System.exit(0);
                         default:
-                            print("Wrong input");
+                            print("Wrong input!");
                     }
                 } catch (InputMismatchException e) {
                     print("Type only one number!");
@@ -93,7 +95,7 @@ public class HangmanModel extends HangmanView{
                 print("\n You win! Congratulations!");
                 break;
             }
-            print("   Life remaining=" + this.life);
+            print("   Life remaining=" + this.life + System.lineSeparator());
         }
         if (life<=0){
             print("You lost!");

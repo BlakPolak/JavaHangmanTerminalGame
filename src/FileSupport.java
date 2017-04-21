@@ -7,15 +7,11 @@ import java.util.List;
 import java.util.Random;
 
 class FileSupport {
-    public static void main(String[] args) { //for testing
-        System.out.println(getCapital());
-    }
-
-  static String getCapital() {
+    static String getCapital() {
     String capital = "";
     try {
         Random random = new Random();
-        String content = new String(Files.readAllBytes(Paths.get("/home/ppolak/Desktop/JavaProjects/javahangmangame-bexpe/europecapitals.txt")));
+        String content = new String(Files.readAllBytes(Paths.get("../europecapitals.txt")));
         List<String> capitals = new ArrayList<String>(Arrays.asList(content.split("\\n")));
         int index = random.nextInt(capitals.size());
         capital = capitals.get(index).toUpperCase();
@@ -27,5 +23,5 @@ class FileSupport {
 
     }
     return capital;
-  }
+    }
 }

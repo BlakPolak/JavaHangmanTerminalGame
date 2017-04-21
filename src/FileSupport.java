@@ -7,8 +7,7 @@ import java.util.List;
 import java.util.Random;
 
 class FileSupport {
-    public static void main(String[] args) {
-        //HangmanView.print(getCapital());
+    public static void main(String[] args) { //for testing
         System.out.println(getCapital());
     }
 
@@ -16,16 +15,10 @@ class FileSupport {
     String capital = "";
     try {
         Random random = new Random();
-        String content = new String(Files.readAllBytes(Paths.get("javahangmangame-bexpe/europecapitals.txt")));
-        // List<String> capitals = Arrays.asList(content.split("\\s+"));  // asList doesnt support removal
+        String content = new String(Files.readAllBytes(Paths.get("/home/ppolak/Desktop/JavaProjects/javahangmangame-bexpe/europecapitals.txt")));
         List<String> capitals = new ArrayList<String>(Arrays.asList(content.split("\\n")));
-
-        //   String content = new String(Files.readAllBytes(Paths.get("javahangmangame-bexpe/europecapitals.txt")));
-        //   List<String> capitals = new ArrayList<String>(Arrays.asList(content.split("\\s+")));
-
         int index = random.nextInt(capitals.size());
         capital = capitals.get(index).toUpperCase();
-//        System.out.println(capital);
         capitals.remove(index);
 
     } catch(IOException ioe) {

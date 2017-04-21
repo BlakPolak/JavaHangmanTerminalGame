@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class HangmanController {
@@ -13,10 +12,6 @@ public class HangmanController {
             if( !HangmanModel.guessedletters.toString().contains(String.valueOf(letterUppercase))){
                 String letterUppercaseStr = Character.toString(letterUppercase);
                 HangmanModel.guessedletters.add(letterUppercaseStr);
-                guessedLettersStr = String.join(",", HangmanModel.guessedletters);
-                HangmanView.print("Used characters: ");
-                HangmanView.print(guessedLettersStr);
-                checkIfNotUsed = false;
                 return letterUppercase;
             }else{
                 HangmanView.print("You have already used this letter! ");

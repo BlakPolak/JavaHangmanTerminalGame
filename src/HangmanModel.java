@@ -2,14 +2,13 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
 
+
 public class HangmanModel extends HangmanView{
     Integer life;
     String capital;
-    static List<String> guessedletters; // wszystkie ktore zgadywal nawet niepoprawne, printowanie na ekranie
+    static List<String> guessedletters;
     char[] guessedWord;
-    char[] charToGuess;
     String wordToGuess;
-
 
     public HangmanModel(){
         this.capital = FileSupport.getCapital();
@@ -20,12 +19,11 @@ public class HangmanModel extends HangmanView{
     }
 
     public char[] wordToGuess(){
-
         Integer i = 0;
         char[] charToGuess = new char[this.capital.length()];
         while (i < this.capital.length()){
             charToGuess[i] = '-';  // changing characters to '-'
-            if (this.capital.charAt(i) == ' '){  // if there is a capital with ' ' its not chanaging to '-' but to ' '
+            if (this.capital.charAt(i) == ' '){  // if there is a capital with ' ' its not changing to '-' but to ' '
                 charToGuess[i]= ' ';
             }
             i++; // going to next char
@@ -34,6 +32,9 @@ public class HangmanModel extends HangmanView{
     }
 
     public  void guessByLettter(){
+        clearScreen();
+        printList(this.guessedletters);
+        print(new String(this.guessedWord));
         print("Guess by letter:");
         Character letterUppercase = HangmanController.getChar();
         if (this.capital.contains(letterUppercase+"")){
@@ -48,38 +49,33 @@ public class HangmanModel extends HangmanView{
     }
 
     public void guessByWord(){
+        clearScreen();
+        printList(this.guessedletters);
+        print(new String(this.guessedWord));
         print("Guess by word:");
         String wordUppercase = HangmanController.getWord();
         if (this.capital.equals(wordUppercase)){
             this.guessedWord = wordUppercase.toCharArray();
-//            print("This is it! You win! " + wordUppercase + "is correct capital.");
         }else{
             this.life--;
         }
-
-
     }
 
     public void playGame(){
         wordToGuess();
         while (life>0){
-            print(ANSI_PURPLE + "1 => guess by letter" + ANSI_RESET);
-            print(ANSI_PURPLE + "2 => guess by word" + ANSI_RESET);
-            print(ANSI_PURPLE + "3 => quit"+ ANSI_RESET);
+            printOptions();
             boolean noInput = true;
             while (noInput) {
-
                 try {
                     Integer option = HangmanController.getInteger();
                     noInput = false;
                     switch (option) {
                         case 1:
                             guessByLettter();
-                            clearScreen();
                             break;
                         case 2:
                             guessByWord();
-                            clearScreen();
                             break;
                         case 3:
                             print("See you next time!");
@@ -87,17 +83,14 @@ public class HangmanModel extends HangmanView{
                             System.exit(0);
                         default:
                             print("Wrong input");
-
                     }
                 } catch (InputMismatchException e) {
                     print("Type only one number!");
-
                 }
-
             }
             if (this.capital.equals(String.valueOf(this.guessedWord))){
-                print(new String (this.guessedWord));
-                print("You win!");
+                print("\n Right capital is "+new String (this.guessedWord));
+                print("\n You win! Congratulations!");
                 break;
             }
             print("   Life remaining=" + this.life);
@@ -105,25 +98,13 @@ public class HangmanModel extends HangmanView{
         if (life<=0){
             print("You lost!");
         }
-
     }
 
-
     public static void main(String[] args){
-        String ANSI_RED = "\u001B[31m";
-        String ANSI_RESET = "\u001B[0m";
-//        String ANSI_BLACK = "\u001B[30m";
-        String ANSI_GREEN = "\u001B[32m";
-//        String ANSI_YELLOW = "\u001B[33m";
-//        String ANSI_BLUE = "\u001B[34m";
-//        String ANSI_PURPLE = "\u001B[35m";
-//        String ANSI_CYAN = "\u001B[36m";
-//        String ANSI_WHITE = "\u001B[37m";
         HangmanModel hangman = new HangmanModel();
         hangman.printWelcomeText(5);
         hangman.print(hangman.capital);
         hangman.print(hangman.wordToGuess);
         hangman.playGame();
-
     }
 }
